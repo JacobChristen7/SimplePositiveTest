@@ -1,14 +1,9 @@
-import { expect } from '@wdio/globals'
-import MyLoginPage from '../pageobjects/my_login.page.js'
-import MySecurePage from '../pageobjects/my_secure.page.js'
+import MyLoginPage from '../pageobjects/my_login.page.js';
 
 describe('Login application', () => {
-    it('logged in with valid credentials', async () => {
-        await MyLoginPage.open()
-
-        await MyLoginPage.login('standard_user', 'secret_sauce')
-        await expect(MySecurePage.logoCheck).toBeExisting()
-        await expect(MySecurePage.logoCheck).toHaveText(
-            expect.stringContaining('Swag Labs'))
+    it('fully tested all user logins', async () => {
+        await MyLoginPage.LoopLogin('secret_sauce')
+        await MyLoginPage.LoopIncorrectLogin('badPassword')        
     })
 })
+
